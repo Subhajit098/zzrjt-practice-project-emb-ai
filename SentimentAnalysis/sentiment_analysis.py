@@ -20,8 +20,8 @@ def sentiment_analyzer(text_to_analyse):
     # Convert the text to dictionary format
     json_reponse=json.loads(response.text)
 
-    label=formatted_response['documentSentiment']['label']
-    score=formatted_response['documentSentiment']['score']
+    label=json_reponse['documentSentiment']['label']
+    score=json_reponse['documentSentiment']['score']
 
     score_label_dict={
         'label' : label,
