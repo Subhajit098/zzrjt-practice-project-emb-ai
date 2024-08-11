@@ -28,7 +28,11 @@ def sent_analyzer():
     label=response['label']
     score=response['score']
 
-    return f"The given text has been identified as {label} with a score of {score}"
+    if label is None : 
+        return "Invalid input! Try again"
+
+    else : 
+        return f"The given text has been identified as {label} with a score of {score}"
 
 
 @app.route("/")

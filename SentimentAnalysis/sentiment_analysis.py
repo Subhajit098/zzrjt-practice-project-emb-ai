@@ -16,20 +16,32 @@ def sentiment_analyzer(text_to_analyse):
     # we need the label and score from the response.text
 
     # return response.text  # Return the response text from the API
+    # print(response.status_code)
 
-    # Convert the text to dictionary format
-    json_reponse=json.loads(response.text)
+    if(response.status_code == 200 ) : 
 
-    label=json_reponse['documentSentiment']['label']
-    score=json_reponse['documentSentiment']['score']
+        # Convert the text to dictionary format
+        json_reponse=json.loads(response.text)
 
-    score_label_dict={
-        'label' : label,
-        'score' : score
-    }
+        label=json_reponse['documentSentiment']['label']
+        score=json_reponse['documentSentiment']['score']
 
-    return score_label_dict
+        score_label_dict={
+            'label' : label,
+            'score' : score
+        }
+
+        return score_label_dict
+
+
+    elif response.status_code==500 : 
+
+        return {
+            'label' : None,
+            'Score' : None
+        }
 
 
 
-sentiment_analyzer("I love this new technology")
+input_txt=input("Please enter the text to be considered : ")
+print(sentiment_analyzer(input_txt))
